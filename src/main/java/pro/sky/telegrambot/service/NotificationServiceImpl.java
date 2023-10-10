@@ -27,9 +27,7 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     public void sendWelcomeMessage(Message message) {
-        String welcomeText = message.from().languageCode().equals("ru")
-                ? "Добро пожаловать в мой бот " + message.chat().firstName() + "!"
-                : "Welcome to my bot " + message.chat().firstName() + "!";
+        String welcomeText = "Добро пожаловать в мой бот " + message.chat().firstName() + "!";
         SendMessage welcomeMessage = new SendMessage(message.chat().id(), welcomeText);
         telegramBot.execute(welcomeMessage);
     }
@@ -55,12 +53,11 @@ public class NotificationServiceImpl implements NotificationService {
         task.setNotification_text(notificationText);
         task.setNotification_time(dateTime);
         notificationRepository.save(task);
+
     }
 
     public void sendInvalidFormatMessage(Message message) {
-        String invalidFormatText = message.from().languageCode().equals("ru")
-                ? "Некорректный формат сообщения. Используйте формат дд.мм.гггг чч:мм текст напоминания"
-                : "Incorrect message format. Use format dd.MM.yyyy HH:mm notification text";
+        String invalidFormatText = "Некорректный формат сообщения. Используйте формат дд.мм.гггг чч:мм текст напоминания";
         SendMessage invalidFormatMessage = new SendMessage(message.chat().id(), invalidFormatText);
         telegramBot.execute(invalidFormatMessage);
     }

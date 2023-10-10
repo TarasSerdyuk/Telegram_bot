@@ -93,16 +93,4 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         SendMessage invalidFormatMessage = new SendMessage(message.chat().id(), invalidFormatText);
         telegramBot.execute(invalidFormatMessage);
     }
-
-    @Scheduled(cron = "0 0/1 * * * *")
-    public void checker() {
-        LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-        List<Notification> notifications = notificationRepository.findByNotificationTime(now);
-        notifications.forEach(this::sendNotify);
-    }
-
-    private void sendNotify(Notification notification) {
-        SendMessage message = new SendMessage(notification.getChat_id(), notification.getNotification_text());
-        telegramBot.execute(message);
-    }
 }
