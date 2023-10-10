@@ -28,6 +28,7 @@ public class Notification {
 
     public void setChat_id(Long chat_id) {
         this.chat_id = chat_id;
+
     }
 
     public String getNotification_text() {

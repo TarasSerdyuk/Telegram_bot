@@ -13,5 +13,4 @@ import java.util.List;
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
     @Query("SELECT n FROM Notification n WHERE n.notification_time = :currentTime")
     List<Notification> findByNotificationTime(LocalDateTime currentTime);
-
 }
